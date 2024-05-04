@@ -6,10 +6,12 @@
 
 C.  Customize the HTML user interface for your customer’s application. The user interface should include the shop name, the product names, and the names of the parts.
 
-> Lines 14 and 19: Added custom shop name to title and header
+> mainscreen.html - Lines 14 and 19: Added custom shop name to title and header
 
 D.  Add an “About” page to the application to describe your chosen customer’s company to web viewers and include navigation to and from the “About” page and the main screen.
 
+> Added about.html
+> mainscreen.html - line 90: Added link to about.html
 
 E.  Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
 
