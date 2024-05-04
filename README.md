@@ -12,6 +12,7 @@ D.  Add an “About” page to the application to describe your chosen customer�
 
 > Added about.html
 > mainscreen.html - line 90: Added link to about.html
+> MainScreenControllerr.java - line 55-58: Added mapping for about.html
 
 E.  Add a sample inventory appropriate for your chosen store to the application. You should have five parts and five products in your sample inventory and should not overwrite existing data in the database.
 
