@@ -8,14 +8,18 @@ import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -31,6 +35,8 @@ public class AddProductController {
     private List<Part> theParts;
     private static Product product1;
     private Product product;
+    @Autowired
+    private ProductServiceImpl productServiceImpl;
 
     @GetMapping("/showFormAddProduct")
     public String showFormAddPart(Model theModel) {
@@ -173,4 +179,25 @@ public class AddProductController {
         theModel.addAttribute("availparts",availParts);
         return "productForm";
     }
+
+    @GetMapping("/buyProduct")
+    public String buyProduct(@RequestParam("productID") int theId, RedirectAttributes redirectAttributes) {
+        try {
+            Product product = productServiceImpl.findById(theId);
+            if (product != null && product.getInv() > 0) {
+                product.setInv(product.getInv() - 1);
+                productServiceImpl.save(product);
+                redirectAttributes.addFlashAttribute("message", "Purchase successful!");
+            } else if (product != null) {
+                redirectAttributes.addFlashAttribute("error", "Insufficient stock!");
+            // Concurrent access issue; if one user deletes before another tries to purchase...
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Product not found!");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "An error occurred while processing your purchase request.");
+        }
+        return "redirect:/mainscreen";
+    }
+
 }

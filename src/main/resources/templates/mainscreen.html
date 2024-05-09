@@ -12,6 +12,12 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>Modular Furniture Co.</title>
+    <style>
+        .alert {
+            opacity: 1;
+            transition: opacity 1s linear;
+        }
+    </style>
 </head>
 <body>
 
@@ -74,6 +80,10 @@
             <th>Action</th>
         </tr>
         </thead>
+        <div id="messages-container">
+            <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+            <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+        </div>
         <tbody>
         <tr th:each="tempProduct : ${products}">
             <td th:text="${tempProduct.name}">1</td>
@@ -82,6 +92,7 @@
             <td><a th:href="@{/showProductFormForUpdate(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3">Update</a>
                 <a th:href="@{/deleteproduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3"
                    onclick="if(!(confirm('Are you sure you want to delete this product?')))return false">Delete</a>
+                <a th:href="@{/buyProduct(productID=${tempProduct.id})}" class="btn btn-primary btn-sm mb-3">Buy Now</a>
             </td>
         </tr>
         </tbody>
@@ -89,5 +100,19 @@
     <br><br>
     <a th:href="@{/about}">About Us</a>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const messagesContainer = document.getElementById('messages-container');
+
+        setInterval(function() {
+            let alerts = messagesContainer.querySelectorAll('.alert');
+            alerts.forEach(alert => {
+                alert.style.opacity = '0';
+                // Set timeout to remove the alert element from DOM after fade out
+                setTimeout(() => alert.remove(), 1000);
+            });
+        }, 100); // checks and starts fade every 0.5 seconds
+    });
+</script>
 </body>
 </html>

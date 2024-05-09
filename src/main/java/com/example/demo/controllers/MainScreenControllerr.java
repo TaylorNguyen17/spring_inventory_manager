@@ -22,8 +22,8 @@ import java.util.List;
 
 @Controller
 public class MainScreenControllerr {
-   // private final PartRepository partRepository;
-   // private final ProductRepository productRepository;'
+    private final PartRepository partRepository;
+    private final ProductRepository productRepository;
 
     private PartService partService;
     private ProductService productService;
@@ -31,12 +31,14 @@ public class MainScreenControllerr {
     private List<Part> theParts;
     private List<Product> theProducts;
 
- /*   public MainScreenControllerr(PartRepository partRepository, ProductRepository productRepository) {
+//    public MainScreenControllerr(PartRepository partRepository, ProductRepository productRepository) {
+//        this.partRepository = partRepository;
+//        this.productRepository = productRepository;
+//    }
+
+    public MainScreenControllerr(PartRepository partRepository, ProductRepository productRepository, PartService partService, ProductService productService){
         this.partRepository = partRepository;
         this.productRepository = productRepository;
-    }*/
-
-    public MainScreenControllerr(PartService partService,ProductService productService){
         this.partService=partService;
         this.productService=productService;
     }
