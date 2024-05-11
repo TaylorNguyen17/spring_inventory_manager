@@ -1,6 +1,7 @@
 package com.example.demo.domain;
 
 import com.example.demo.validators.ValidDeletePart;
+import com.example.demo.validators.ValidInvRange;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -14,6 +15,7 @@ import java.util.Set;
  *
  *
  */
+@ValidInvRange
 @Entity
 @ValidDeletePart
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -26,8 +28,14 @@ public abstract class Part implements Serializable {
     String name;
     @Min(value = 0, message = "Price value must be positive")
     double price;
+
     @Min(value = 0, message = "Inventory value must be positive")
     int inv;
+
+    @Min(value = 0, message = "Minimum inventory cannot be below zero")
+    int minInv;
+    @Min(value = 0, message = "Maximum inventory cannot be below zero")
+    int maxInv;
 
     @ManyToMany
     @JoinTable(name="product_part", joinColumns = @JoinColumn(name="part_id"),
@@ -82,12 +90,32 @@ public abstract class Part implements Serializable {
         this.inv = inv;
     }
 
+    public int getMinInv() {
+        return minInv;
+    }
+
+    public void setMinInv(int minInv) {
+        this.minInv = minInv;
+    }
+
+    public int getMaxInv() {
+        return maxInv;
+    }
+
+    public void setMaxInv(int maxInv) {
+        this.maxInv = maxInv;
+    }
+
     public Set<Product> getProducts() {
         return products;
     }
 
     public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    public boolean isInvValid() {
+        return inv >= minInv && inv <= maxInv;
     }
 
     public String toString(){

@@ -44,19 +44,19 @@ public class BootStrapData implements CommandLineRunner {
         long productCount = productRepository.count();
 
         if (partCount == 0) {
-            InhousePart base = new InhousePart(0, "base", 499.99, 900);
+            InhousePart base = new InhousePart(0, "base", 499.99, 900, 0, 999);
             partRepository.save(base);
 
-            InhousePart seat = new InhousePart(1, "seat", 99.99, 900);
+            InhousePart seat = new InhousePart(1, "seat", 99.99, 900, 0, 999);
             partRepository.save(seat);
 
-            InhousePart sidewall = new InhousePart(2, "sidewall", 199.99, 900);
+            InhousePart sidewall = new InhousePart(2, "sidewall", 199.99, 900, 0, 999);
             partRepository.save(sidewall);
 
-            InhousePart cushion = new InhousePart(3, "cushion", 89.99, 900);
+            InhousePart cushion = new InhousePart(3, "cushion", 89.99, 900, 0 ,999);
             partRepository.save(cushion);
 
-            OutsourcedPart connector = new OutsourcedPart(100, "connector", 24.99, 900, "Modular Milling Co");
+            OutsourcedPart connector = new OutsourcedPart(100, "connector", 24.99, 900, 0, 999, "Modular Milling Co");
             partRepository.save(connector);
         }
 
