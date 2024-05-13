@@ -1,5 +1,6 @@
 package com.example.demo.domain;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +22,9 @@ class InhousePartTest {
     @BeforeEach
     void setUp() {
         ip= new InhousePart();
+        ip.setMinInv(10);
+        ip.setMaxInv(50);
+        ip.setInv(30);
     }
 
     @Test
@@ -35,5 +39,23 @@ class InhousePartTest {
         int idValue=4;
         ip.setPartId(idValue);
         assertEquals(ip.getPartId(), idValue);
+    }
+
+    @Test
+    void updateInvWithinLimits() {
+        ip.setInv(25);
+        Assertions.assertTrue(ip.isInvValid());
+    }
+
+    @Test
+    void updateInventoryBeyondMaxLimits() {
+        ip.setInv(51);
+        Assertions.assertFalse(ip.isInvValid());
+    }
+
+    @Test
+    void updateInventoryBelowMinLimit() {
+        ip.setInv(9);
+        Assertions.assertFalse(ip.isInvValid());
     }
 }

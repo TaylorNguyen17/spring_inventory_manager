@@ -58,12 +58,11 @@ H.  Add validation for between or at the maximum and minimum fields. The validat
 •  Display error messages for low inventory when adding and updating products lowers the part inventory below the minimum.
 •  Display error messages when adding and updating parts if the inventory is greater than the maximum.
 
-> It would seem that the implementation of the validator from part G satisfies this task
-> ValidInvRange.java - Entire file: added a new validator interface to check inventory levels against the min/max range
-> InvRangeValidator.java - Entire file: implementation of the inventory validation, uses a custom error message
+> EnufPartsValidator.java - Line 36: Added logic so that the preexisting validator also checks to see if the inv update will put the current inventory lower than the minimum inventory
 
 I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
 
+> InhousePartTest.java - Lines 43-60: Added three unit tests to confirm that the inventory can only be set to values between the max and min inventory values.
 
 J.  Remove the class files for any unused validators in order to clean your code.
 
