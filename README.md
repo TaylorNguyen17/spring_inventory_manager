@@ -59,6 +59,7 @@ H.  Add validation for between or at the maximum and minimum fields. The validat
 •  Display error messages when adding and updating parts if the inventory is greater than the maximum.
 
 > EnufPartsValidator.java - Line 36: Added logic so that the preexisting validator also checks to see if the inv update will put the current inventory lower than the minimum inventory
+> productForm.html - Lines 40-41, 50-51, 64-65, 74-75: Added minInv and maxInv to the parts table.
 
 I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
 
