@@ -66,5 +66,7 @@ I.  Add at least two unit tests for the maximum and minimum fields to the PartTe
 
 J.  Remove the class files for any unused validators in order to clean your code.
 
+> Removed DeletePartsValidator.java and ValidDeleteParts.java as the current implementation is unused.
+> Removed the @ValidDeleteParts annotation from Parts.java
 
 K.  Demonstrate professional communication in the content and presentation of your submission.

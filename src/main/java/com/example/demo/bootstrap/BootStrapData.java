@@ -57,7 +57,7 @@ public class BootStrapData implements CommandLineRunner {
             partRepository.save(cushion);
 
             OutsourcedPart connector = new OutsourcedPart(100, "connector", 24.99, 900, 0, 999, "Modular Milling Co");
-            partRepository.save(connector);
+            outsourcedPartRepository.save(connector);
         }
 
 
