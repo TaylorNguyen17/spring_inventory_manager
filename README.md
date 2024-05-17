@@ -31,6 +31,9 @@ F.  Add a “Buy Now” button to your product list. Your “Buy Now” button m
 > mainscreen.html - Lines 15-20 and 108-118: added styling for validation message for purchasing (fade out over 1 second)
 > mainscreen.html - Line 99: added "Buy Now" button
 > AddProductController.java - Line 183-201: added the mapping for the "Buy Now" button to decrement inventory if possible
+> FIX: AddProductController.java - Line 184-200, 201-208: changed implementation of success/fail messaging on "Buy Now" button by redirecting to "insufficient stock" or "purchase successful" pages instead of a flash message.
+> insufficientstock.html - Entire file: added a simple message for if the "Buy Now" button is pressed while inventory is zero.
+> purchasesuccessful.html - Entire file: added a simple message for a successful buy.
 
 G.  Modify the parts to track maximum and minimum inventory by doing the following:
 •  Add additional fields to the part entity for maximum and minimum inventory.
@@ -64,6 +67,7 @@ H.  Add validation for between or at the maximum and minimum fields. The validat
 I.  Add at least two unit tests for the maximum and minimum fields to the PartTest class in the test package.
 
 > InhousePartTest.java - Lines 43-60: Added three unit tests to confirm that the inventory can only be set to values between the max and min inventory values.
+> FIX: PartTest.java - Lines 30-32, 163-181: Moved the three unit tests to PartTest.java to conform with instructions.
 
 J.  Remove the class files for any unused validators in order to clean your code.
 

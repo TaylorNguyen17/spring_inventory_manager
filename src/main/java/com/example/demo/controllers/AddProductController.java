@@ -181,23 +181,31 @@ public class AddProductController {
     }
 
     @GetMapping("/buyProduct")
-    public String buyProduct(@RequestParam("productID") int theId, RedirectAttributes redirectAttributes) {
-        try {
-            Product product = productServiceImpl.findById(theId);
-            if (product != null && product.getInv() > 0) {
-                product.setInv(product.getInv() - 1);
-                productServiceImpl.save(product);
-                redirectAttributes.addFlashAttribute("message", "Purchase successful!");
-            } else if (product != null) {
-                redirectAttributes.addFlashAttribute("error", "Insufficient stock!");
-            // Concurrent access issue; if one user deletes before another tries to purchase...
-            } else {
-                redirectAttributes.addFlashAttribute("error", "Product not found!");
-            }
-        } catch (Exception e) {
-            redirectAttributes.addFlashAttribute("error", "An error occurred while processing your purchase request.");
+    public String buyProduct(@RequestParam("productID") int theId) {
+//        try {
+//            Product product = productServiceImpl.findById(theId);
+//            if (product != null && product.getInv() > 0) {
+//                product.setInv(product.getInv() - 1);
+//                productServiceImpl.save(product);
+//                redirectAttributes.addFlashAttribute("message", "Purchase successful!");
+//            } else if (product != null) {
+//                redirectAttributes.addFlashAttribute("error", "Insufficient stock!");
+//            // Concurrent access issue; if one user deletes before another tries to purchase...
+//            } else {
+//                redirectAttributes.addFlashAttribute("error", "Product not found!");
+//            }
+//        } catch (Exception e) {
+//            redirectAttributes.addFlashAttribute("error", "An error occurred while processing your purchase request.");
+//        }
+//        return "redirect:/mainscreen";
+        Product product = productServiceImpl.findById(theId);
+        if (product != null && product.getInv() > 0) {
+            product.setInv(product.getInv() - 1);
+            productServiceImpl.save(product);
+            return "purchasesuccessful";
+        } else {
+            return "insufficientstock";
         }
-        return "redirect:/mainscreen";
     }
 
 }
