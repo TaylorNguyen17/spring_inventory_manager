@@ -27,9 +27,9 @@ class PartTest {
     void setUp() {
         partIn=new InhousePart();
         partOut=new OutsourcedPart();
-        partIn.setMinInv(10);
-        partIn.setMaxInv(50);
-        partIn.setInv(30);
+//        partIn.setMinInv(10);
+//        partIn.setMaxInv(50);
+//        partIn.setInv(30);
     }
     @Test
     void getId() {
@@ -106,6 +106,24 @@ class PartTest {
     }
 
     @Test
+    void setMinInv() {
+        int minInv=5;
+        partIn.setMinInv(minInv);
+        assertEquals(minInv,partIn.getMinInv());
+        partOut.setMinInv(minInv);
+        assertEquals(minInv,partOut.getMinInv());
+    }
+
+    @Test
+    void setMaxInv() {
+        int maxInv=50;
+        partIn.setMaxInv(maxInv);
+        assertEquals(maxInv,partIn.getMaxInv());
+        partOut.setMaxInv(maxInv);
+        assertEquals(maxInv,partOut.getMaxInv());
+    }
+
+    @Test
     void getProducts() {
         Product product1= new Product();
         Product product2= new Product();
@@ -161,22 +179,22 @@ class PartTest {
         assertEquals(partIn.hashCode(),partOut.hashCode());
     }
 
-    @Test
-    void updateInvWithinLimits() {
-        partIn.setInv(25);
-        Assertions.assertTrue(partIn.isInvValid());
-    }
-
-    @Test
-    void updateInventoryBeyondMaxLimits() {
-        partIn.setInv(51);
-        Assertions.assertFalse(partIn.isInvValid());
-    }
-
-    @Test
-    void updateInventoryBelowMinLimit() {
-        partIn.setInv(9);
-        Assertions.assertFalse(partIn.isInvValid());
-    }
+//    @Test
+//    void updateInvWithinLimits() {
+//        partIn.setInv(25);
+//        Assertions.assertTrue(partIn.isInvValid());
+//    }
+//
+//    @Test
+//    void updateInventoryBeyondMaxLimits() {
+//        partIn.setInv(51);
+//        Assertions.assertFalse(partIn.isInvValid());
+//    }
+//
+//    @Test
+//    void updateInventoryBelowMinLimit() {
+//        partIn.setInv(9);
+//        Assertions.assertFalse(partIn.isInvValid());
+//    }
 
 }

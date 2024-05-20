@@ -68,6 +68,7 @@ I.  Add at least two unit tests for the maximum and minimum fields to the PartTe
 
 > InhousePartTest.java - Lines 43-60: Added three unit tests to confirm that the inventory can only be set to values between the max and min inventory values.
 > FIX: PartTest.java - Lines 30-32, 163-181: Moved the three unit tests to PartTest.java to conform with instructions.
+> FIX: PartTest.java - Lines 108-125: Misunderstood the task. Unit tests now directly test that min and max inventory are set properly.
 
 J.  Remove the class files for any unused validators in order to clean your code.
 
